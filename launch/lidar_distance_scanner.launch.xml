@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="points_topic" description="The raw lidar topic (required)" />
+    <arg name="coloured_points_topic" description="The lidar topic that has intesity value that correspond to the distance (required)" />
+    <arg name="target_point_topic" default="target_point" description="The target point topic to measure the distance from" />
+    <arg name="max_distance" default="50.0" description="The maximum distance from a point to the reference point"  />
+
+    <node pkg="lidar_distance_scanner" exec="lidar_distance_scanner_node" name="lidar_distance_scanner_node" output="screen">
+    	<param name="points_topic" value="$(var points_topic)" />
+    	<param name="coloured_points_topic" value="$(var coloured_points_topic)" />
+    	<param name="target_point_topic" value="$(var target_point_topic)" />
+    	<param name="max_distance" value="$(var max_distance)" />
+
+        <env name="RMW_IMPLEMENTATION" value="rmw_fastrtps_cpp" />
+    </node>
+</launch>
