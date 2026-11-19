@@ -38,4 +38,17 @@ class DistanceColorizer : public rclcpp::Node
 		rclcpp::TimerBase::SharedPtr timer_;
 };
 
+static const rmw_qos_profile_t rmw_qos_profile_pointcloud_map_data =
+{
+  RMW_QOS_POLICY_HISTORY_KEEP_LAST,
+  5,
+  RMW_QOS_POLICY_RELIABILITY_RELIABLE,
+  RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL,
+  RMW_QOS_DEADLINE_DEFAULT,
+  RMW_QOS_LIFESPAN_DEFAULT,
+  RMW_QOS_POLICY_LIVELINESS_SYSTEM_DEFAULT,
+  RMW_QOS_LIVELINESS_LEASE_DURATION_DEFAULT,
+  false
+};
+
 #endif
