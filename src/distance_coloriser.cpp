@@ -25,12 +25,12 @@ DistanceColorizer::DistanceColorizer() : Node("lidar_distance_scanner_node")
     this->publisher_ = create_publisher<sensor_msgs::msg::PointCloud2>(coloured_points_topic, rclcpp::SensorDataQoS());
     this->subscription_ = create_subscription<sensor_msgs::msg::PointCloud2>(
         points_topic, 
-        rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_pointcloud_map_data)), 
+        rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_pointcloud_map_data), rmw_qos_profile_pointcloud_map_data), 
         std::bind(&DistanceColorizer::update_point_cloud, this, std::placeholders::_1)
     );
     this->target_subscription_ = create_subscription<geometry_msgs::msg::PoseWithCovarianceStamped>(
         target_point_topic, 
-        rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_default)),
+        rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_default), rmw_qos_profile_default),
         std::bind(&DistanceColorizer::update_reference_pose, this, std::placeholders::_1)
     );
 
